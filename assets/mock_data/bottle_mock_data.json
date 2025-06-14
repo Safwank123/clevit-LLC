@@ -1,0 +1,38 @@
+[
+  {
+    "id": 2504,
+    "bottle_name": "Talisker 18 Year old",
+    "label_number": "Bottle 135/184",
+    "details": {
+      "Distillery": "Talisker",
+      "Region": "Isle of Skye",
+      "Country": "Scotland",
+      "Type": "Single Malt",
+      "Age statement": "18 years",
+      "Filled": "2004",
+      "Bottled": "2022",
+      "Cask number": "1234",
+      "ABV": "45.8%",
+      "Size": "700ml",
+      "Finish": "Long, warming"
+    },
+    "tasting_notes": {
+      "video_url": "assets/video/preview.png",
+      "expert": "Charles MacLean MBE",
+      "Nose": ["Rich and peaty", "Subtle caramel", "Sea brine"],
+      "Palate": ["Smoky oak", "Sea salt", "Dried fruit"],
+      "Finish": ["Warm", "Lingering", "Smoky"]
+    },
+    "history": [
+      {
+        "label": "Label",
+        "title": "Genesis Collection",
+        "description": ["Crafted by master distillers", "Matured for over 18 years"],
+        "attachments": [
+          "assets/images/bottle.png"
+         
+        ]
+      }
+    ]
+  }
+]
