@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/screens/my_collection_screen.dart';
+import 'package:flutter_task/screens/sigin_in_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -62,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const MyCollectionScreen(),
+                                  builder: (context) => const SignInScreen(),
                                 ),
                               );
                             },

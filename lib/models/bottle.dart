@@ -1,4 +1,4 @@
-// models/bottle.dart
+
 class Bottle {
   final int id;
   final String name;

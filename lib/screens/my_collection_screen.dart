@@ -21,7 +21,7 @@ class MyCollectionScreen extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              // Header Section
+             
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
                 child: Row(
@@ -45,7 +45,7 @@ class MyCollectionScreen extends StatelessWidget {
                 ),
               ),
               
-              // Main Content
+             
               Expanded(
                 child: BlocBuilder<BottleBloc, BottleState>(
                   builder: (context, state) {

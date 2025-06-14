@@ -27,7 +27,7 @@ class BottleRepositoryImpl implements BottleRepository {
   Future<List<Bottle>> fetchBottles() async {
     try {
       final isOnline = await _checkConnectivity();
-      
+
       if (isOnline) {
         final bottles = await _fetchFromApi();
         await _cacheBottles(bottles);
@@ -63,20 +63,18 @@ class BottleRepositoryImpl implements BottleRepository {
   }
 
   Future<List<Bottle>> _fetchFromApi() async {
-    // In a real app, this would make an actual API call
-    // For now, we'll use mock data as a fallback
     developer.log('Fetching from API - using mock data instead');
     return await _fetchFromMock();
   }
 
   Future<List<Bottle>> _fetchFromMock() async {
     try {
-      final jsonString = await rootBundle.loadString('assets/mock_bottles.json');
+      final jsonString = await rootBundle.loadString('assets/bottle_mock_data.json');
       final jsonData = json.decode(jsonString) as List;
       return jsonData.map((json) => Bottle.fromJson(json)).toList();
     } catch (e) {
       developer.log('Error loading mock data: $e', error: e);
-      return []; // Return empty list as final fallback
+      return [];
     }
   }
 
@@ -84,11 +82,8 @@ class BottleRepositoryImpl implements BottleRepository {
     try {
       final jsonList = bottles.map((b) => b.toJson()).toList();
       final jsonString = json.encode(jsonList);
-      
-      // Try SharedPreferences first
+
       await sharedPreferences?.setString('cached_bottles', jsonString);
-      
-      // Fallback to Hive
       await hiveBox.put('cached_bottles', jsonList);
     } catch (e) {
       developer.log('Caching failed: $e', error: e);
@@ -97,18 +92,16 @@ class BottleRepositoryImpl implements BottleRepository {
 
   Future<List<Bottle>> _fetchFromCache() async {
     try {
-      // Try SharedPreferences first
       final cachedData = sharedPreferences?.getString('cached_bottles');
       if (cachedData != null) {
         return _parseBottles(cachedData);
       }
-      
-      // Fallback to Hive
+
       final hiveData = hiveBox.get('cached_bottles');
       if (hiveData != null) {
         return _parseBottles(json.encode(hiveData));
       }
-      
+
       return await _fetchFromMock();
     } catch (e) {
       developer.log('Cache read failed: $e', error: e);

@@ -36,7 +36,7 @@ class BottleRepositoryImpl implements BottleRepository {
       }
     } catch (e) {
       developer.log('Error fetching bottles: $e', error: e);
-      return await _getDefaultBottles(); // Fallback to default data
+      return await _getDefaultBottles();
     }
   }
 
@@ -62,7 +62,7 @@ class BottleRepositoryImpl implements BottleRepository {
   }
 
   Future<List<Bottle>> _fetchFromApi() async {
-    // In a real app, this would make an API call
+   
     try {
       return await _fetchFromMock();
     } catch (e) {
@@ -99,13 +99,13 @@ class BottleRepositoryImpl implements BottleRepository {
 
   Future<List<Bottle>> _fetchFromCache() async {
     try {
-      // Try SharedPreferences first
+      
       final cachedData = sharedPreferences.getString('cached_bottles');
       if (cachedData != null) {
         return _parseBottles(cachedData);
       }
       
-      // Fallback to Hive
+    
       final hiveData = hiveBox.get('cached_bottles');
       if (hiveData != null) {
         return _parseBottles(json.encode(hiveData));
@@ -129,7 +129,7 @@ class BottleRepositoryImpl implements BottleRepository {
   }
 
   Future<List<Bottle>> _getDefaultBottles() async {
-    // Hardcoded fallback data
+  
     return [
       Bottle(
         id: 2504,
